@@ -19,20 +19,36 @@ class HomePage extends HookWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+            Expanded(
+              child: Scaffold(
+                body: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'You have pushed the button this many times:',
+                      ),
+                      Text(
+                        '$counter',
+                        style: Theme.of(context).textTheme.headline4,
+                      ),
+                    ],
+                  ),
+                ),
+                floatingActionButton: FloatingActionButton(
+                  onPressed: () => context.read(homePageProvider).increment(),
+                  tooltip: 'Increment',
+                  child: Icon(Icons.add),
+                ),
+              ),
             ),
-            Text(
-              '$counter',
-              style: Theme.of(context).textTheme.headline4,
+            Expanded(
+              child: Container(
+                color: Colors.green[100],
+              ),
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => context.read(homePageProvider).increment(),
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
       ),
     );
   }
