@@ -1,14 +1,18 @@
 import 'package:flutter/cupertino.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class HomePageState {
-  HomePageState({@required this.counter, @required this.isChecked});
+part 'home_page_state.freezed.dart';
 
-  int counter;
-  bool isChecked;
+@freezed
+abstract class HomePageState implements _$HomePageState {
+  factory HomePageState({
+    @required int counter,
+    @required bool isChecked,
+  }) = _HomePageState;
 
-  HomePageState increased() =>
-      HomePageState(counter: counter + 1, isChecked: isChecked);
+  HomePageState._();
 
-  HomePageState check(bool value) =>
-      HomePageState(counter: counter, isChecked: value);
+  HomePageState increased() => copyWith(counter: counter + 1);
+
+  HomePageState check(bool value) => copyWith(isChecked: value);
 }
