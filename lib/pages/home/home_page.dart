@@ -10,7 +10,7 @@ class HomePage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final counter = useProvider(homePageProvider.state).counter;
-    final isChecked = false;
+    final isChecked = useProvider(homePageProvider.state).isChecked;
 
     return Scaffold(
       appBar: AppBar(
@@ -61,7 +61,9 @@ class HomePage extends HookWidget {
                         activeColor: Colors.blue,
                         value: isChecked,
                         onChanged: (isCheckedNow) {
-                          /* TODO */
+                          context
+                              .read(homePageProvider)
+                              .switchCheck(isCheckedNow);
                         },
                       ),
                     ],
