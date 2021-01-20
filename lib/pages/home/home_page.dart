@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hola/providers/home/home_page_provider.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:hola/pages/home/home_page_checkbox_scaffold.dart';
+import 'package:hola/pages/home/home_page_counter_column.dart';
 
-class HomePage extends HookWidget {
+class HomePage extends StatelessWidget {
   HomePage({Key key, this.title}) : super(key: key);
   final String title;
 
   @override
   Widget build(BuildContext context) {
-    final counter = useProvider(homePageProvider.state).counter;
-    final isChecked = useProvider(homePageProvider.state).isChecked;
-
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
@@ -21,54 +17,12 @@ class HomePage extends HookWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Expanded(
-              child: Scaffold(
-                body: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        'You have pushed the button this many times:',
-                      ),
-                      Text(
-                        '$counter',
-                        style: Theme.of(context).textTheme.headline4,
-                      ),
-                    ],
-                  ),
-                ),
-                floatingActionButton: FloatingActionButton(
-                  onPressed: () => context.read(homePageProvider).increment(),
-                  tooltip: 'Increment',
-                  child: Icon(Icons.add),
-                ),
-              ),
+              child: HomePageCounterColumn(),
             ),
             Expanded(
               child: Container(
                 color: Colors.green[100],
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.thumb_up,
-                        color: isChecked
-                            ? Theme.of(context).accentColor
-                            : Colors.grey[500],
-                        size: 100.0,
-                      ),
-                      Checkbox(
-                        activeColor: Colors.blue,
-                        value: isChecked,
-                        onChanged: (isCheckedNow) {
-                          context
-                              .read(homePageProvider)
-                              .switchCheck(isCheckedNow);
-                        },
-                      ),
-                    ],
-                  ),
-                ),
+                child: Center(child: HomePageCheckBoxColumn()),
               ),
             ),
           ],
