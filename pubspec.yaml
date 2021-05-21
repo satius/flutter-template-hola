@@ -26,6 +26,7 @@ dependencies:
   flutter_hooks:
   hooks_riverpod:
   freezed_annotation:
+  kotlin_flavor:
 
 
   # The following adds the Cupertino Icons font to your application.

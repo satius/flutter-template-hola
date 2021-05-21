@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hola/providers/home/home_page_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kotlin_flavor/scope_functions.dart';
 
 class HomePageCheckBoxColumn extends HookWidget {
   @override
@@ -20,9 +21,9 @@ class HomePageCheckBoxColumn extends HookWidget {
           activeColor: Colors.blue,
           value: isChecked,
           onChanged: (isCheckedNow) {
-            if (isCheckedNow != null) {
-              context.read(homePageProvider.notifier).switchCheck(isCheckedNow);
-            }
+            isCheckedNow?.let((it) {
+              context.read(homePageProvider.notifier).switchCheck(it);
+            });
           },
         ),
       ],
