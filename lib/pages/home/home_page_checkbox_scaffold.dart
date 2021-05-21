@@ -6,7 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class HomePageCheckBoxColumn extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final isChecked = useProvider(homePageProvider.state).isChecked;
+    final isChecked = useProvider(homePageProvider).isChecked;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -20,7 +20,9 @@ class HomePageCheckBoxColumn extends HookWidget {
           activeColor: Colors.blue,
           value: isChecked,
           onChanged: (isCheckedNow) {
-            context.read(homePageProvider).switchCheck(isCheckedNow);
+            if (isCheckedNow != null) {
+              context.read(homePageProvider.notifier).switchCheck(isCheckedNow);
+            }
           },
         ),
       ],
