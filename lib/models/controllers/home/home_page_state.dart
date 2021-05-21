@@ -6,8 +6,8 @@ part 'home_page_state.freezed.dart';
 @freezed
 abstract class HomePageState implements _$HomePageState {
   factory HomePageState({
-    @required int counter,
-    @required bool isChecked,
+    required int counter,
+    required bool isChecked,
   }) = _HomePageState;
 
   HomePageState._();
